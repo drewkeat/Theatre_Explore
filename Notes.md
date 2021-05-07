@@ -36,4 +36,16 @@
 
 ## Process Notes
 
-User will enter 
+User will enter Theatre_Explore
+
+CLI displays options 
+
+    How would you like to search?
+    1) Productions by year
+    2) Productions by venue
+    3) Productions by show title
+
+    Select 1-3
+
+
+
