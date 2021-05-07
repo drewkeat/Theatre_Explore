@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "Theatre_Explore"
+require "environment"
 
 Theatre_Explore::CLI.new.call
