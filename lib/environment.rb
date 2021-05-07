@@ -2,5 +2,8 @@
 
 require_relative "Theatre_Explore/version"
 require_relative "Theatre_Explore/cli"
-
+require_relative "Theatre_Explore/year_scraper"
+require 'pry'
+require 'nokogiri'
+require 'mechanize'
 

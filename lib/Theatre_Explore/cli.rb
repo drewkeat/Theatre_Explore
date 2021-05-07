@@ -17,28 +17,33 @@ class Theatre_Explore::CLI
 
     def prompt_select
         puts
-        puts "Select 1-3" 
+        puts "Input the corresponding number for your selection." 
         input = ''
         until input == 'exit'
         input = gets.strip.downcase
             case input
             when "1"
                 puts "What year would you like to explore?"
+                YearScraper.new("1987")
             when "2"
                 puts "What venue would you like to explore?"
             when "3"
                 puts "What show would you like to explore?"
             when 'exit'
                 goodbye
+                
             else
                 puts "I'm not sure what you want."
                 display_options
             end
         end
     end
+
     def goodbye
+        system("clear")
         puts "Thank you for exploring Theatre"
         puts "Goodbye!"
         exit
     end
+
 end
