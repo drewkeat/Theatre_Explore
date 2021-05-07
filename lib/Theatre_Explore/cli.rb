@@ -10,7 +10,35 @@ class Theatre_Explore::CLI
         puts "
         1) Productions by year
         2) Productions by venue
-        3) Productions by show title"
-        puts "\nSelect 1-3"
+        3) Productions by show title
+        or type 'Exit' to end the program. \n"
+        prompt_select
+    end
+
+    def prompt_select
+        puts
+        puts "Select 1-3" 
+        input = ''
+        until input == 'exit'
+        input = gets.strip.downcase
+            case input
+            when "1"
+                puts "What year would you like to explore?"
+            when "2"
+                puts "What venue would you like to explore?"
+            when "3"
+                puts "What show would you like to explore?"
+            when 'exit'
+                goodbye
+            else
+                puts "I'm not sure what you want."
+                display_options
+            end
+        end
+    end
+    def goodbye
+        puts "Thank you for exploring Theatre"
+        puts "Goodbye!"
+        exit
     end
 end
