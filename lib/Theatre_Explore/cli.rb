@@ -24,7 +24,8 @@ class Theatre_Explore::CLI
             case input
             when "1"
                 puts "What year would you like to explore?"
-                YearScraper.new("1987")
+                year = gets.strip
+                YearScraper.new(year)
             when "2"
                 puts "What venue would you like to explore?"
             when "3"
@@ -41,7 +42,7 @@ class Theatre_Explore::CLI
 
     def goodbye
         system("clear")
-        puts "Thank you for exploring Theatre"
+        puts "Thanks for exploring!"
         puts "Goodbye!"
         exit
     end

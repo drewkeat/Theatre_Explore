@@ -51,15 +51,21 @@ When user selects how to search
     Item Specific Query Prompt
         1. What year would you like to explore?
             - Query Year
-            - Display all Broadway productions for that year
+            - Display all Broadway productions for that year 
 
         2. What venue would you like to explore?
-            - Query Venue Name
+            - Query Venue Name 
             - Display all Broadway productions held at that venue
 
         3. What show would you like to explore?
-            -Query Show Title
+            -Query Show Title  (URL: https://www.broadwayworld.com/search/index.php?search_type%5B%5D=shows&q=SHOW+TITLE+HERE) 
             -Display all Broadway productions of this title
+
+### Mechanize notes
+
+`var = Mechanize.new`  Instantiates new Mechanize object
+
+`page = var.get(URL)` Saves a Mechanize::Page object with data from the webpage
 
 
 
