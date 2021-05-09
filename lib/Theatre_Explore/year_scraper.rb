@@ -1,19 +1,19 @@
 class YearScraper
-    attr_accessor :page, :name
+    attr_accessor :page, :label
     def initialize(year)
         agent = Mechanize.new
         @page = agent.get("https://www.broadwayworld.com/browseshows.cfm?showtype=BR&open_yr=#{year}")
-        @name = "#{year}_scraper"
+        @label = year
+        build_year
     end
 
     def build_year
         #returns hash with shows text as keys and shows links as values
+        shows = {}
         list_object = @page.search("p+ ul li")
-        #list_object.each.first = Show Link & Title
-        #list_object.children[2] = Opening Date
-        #list_object.children[]
-
-
-
+        list_object.each do |show|
+            shows[show.text] = show.at("a").attribute("href").value
+        end
+        Year.new(@label, shows)
     end
 end

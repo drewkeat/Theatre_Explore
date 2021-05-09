@@ -25,7 +25,8 @@ class Theatre_Explore::CLI
             when "1"
                 puts "What year would you like to explore?"
                 year = gets.strip
-                YearScraper.new(year)
+                Year.exist?(year) ? nil : YearScraper.new(year)
+                Year.print(year)
             when "2"
                 puts "What venue would you like to explore?"
             when "3"
