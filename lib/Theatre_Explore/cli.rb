@@ -76,7 +76,7 @@ class Theatre_Explore::CLI
     def goodbye
         system("clear")
         puts "Thanks for exploring!"
-        binding.pry
+        # binding.pry
         puts "Goodbye!"
         exit
     end

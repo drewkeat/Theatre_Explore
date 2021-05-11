@@ -42,8 +42,7 @@ CLI displays options
 
     How would you like to search?
     1) Productions by year
-    2) Productions by venue
-    3) Productions by show title
+    2) Productions by show title
 
 Input the corresponding number for your selection.
 
@@ -51,21 +50,43 @@ When user selects how to search
     Item Specific Query Prompt
         1. What year would you like to explore?
             - Query Year
-            - Display all Broadway productions for that year 
+            - Scrape all productions for year and create Year Object
+            - Display all Broadway productions for that year
+            - Production Selection Prompt
 
-        2. What venue would you like to explore?
-            - Query Venue Name 
-            - Display all Broadway productions held at that venue
-
-        3. What show would you like to explore?
-            -Query Show Title  (URL: https://www.broadwayworld.com/search/index.php?search_type%5B%5D=shows&q=SHOW+TITLE+HERE) 
+        2. What show would you like to explore?
+            -Query Show Title
+            -Scraper searches BroadwayWorld for show title and Creates Show Object
             -Display all Broadway productions of this title
+            - Production Selection Prompt
+
+Production Selection Prompt
+    -Ask users if they wish to explore a specific production?
+    -User inputs integer to select which production to investigate further.
+    -Scraper pulls production url and creates production object
+    -Display Production Details
+    -Final Prompt
+
+Final prompt
+    -Ask users if they wish to explore more
+    -Y => Initial Prompt
+    -N => Exit
+
 
 ### Mechanize notes
 
 `var = Mechanize.new`  Instantiates new Mechanize object
 
 `page = var.get(URL)` Saves a Mechanize::Page object with data from the webpage
+
+### Fix notes 05/11/2020
+
+Todo:
+
+- Clean Up CLI by building "fake data" in Year,Show, and Production Classes
+- Add module storage for redundant methods
+
+
 
 
 
