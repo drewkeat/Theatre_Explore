@@ -10,9 +10,9 @@ class Show
     end
 
     def print
-        puts "==============="
+        puts "========================"
         puts "#{@label}"
-        puts "==============="
+        puts "========================"
         puts details
     end
 

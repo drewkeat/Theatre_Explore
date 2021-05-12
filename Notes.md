@@ -79,13 +79,11 @@ Final prompt
 
 `page = var.get(URL)` Saves a Mechanize::Page object with data from the webpage
 
-### Fix notes 05/11/2020
+### Fix notes
 
 Todo:
-
-- Clean Up CLI by building "fake data" in Year,Show, and Production Classes
-- Add module storage for redundant methods
-
+- ShowScraper won't work on "Year Links"
+- 
 
 
 

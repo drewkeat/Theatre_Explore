@@ -16,6 +16,12 @@ class Year
         @@all << self
     end
 
+    def production_select(choice)
+        url = @shows[@shows.keys[choice-1]]
+        ShowScraper.new(url).show.print
+
+    end
+
     def self.find(year)
         @@all.detect {|ele| ele.label == year}
     end

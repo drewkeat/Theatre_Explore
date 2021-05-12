@@ -1,5 +1,5 @@
 class ShowScraper
-    attr_accessor :page
+    attr_accessor :page, :show
     def initialize(url)
         agent = Mechanize.new
         @page = agent.get(url) #lk 
@@ -9,8 +9,7 @@ class ShowScraper
     def build_show
         details = build_details
         title = @page.search(".header").text.gsub(/\s-.*/,"")
-        binding.pry
-        Show.new(title, details)
+        @show = Show.new(title, details)
     end
 
     def build_details

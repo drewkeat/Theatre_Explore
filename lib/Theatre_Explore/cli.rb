@@ -51,18 +51,18 @@ class Theatre_Explore::CLI
                 if Year.exist?(year)
                     inst = Year.find(year)
                     inst.print
-                    # puts "========================"
-                    # puts "Enter the number of the production you wish to explore"
-                    # choice = gets.strip
-                    # show_select(inst,choice)
+                    puts "========================"
+                    puts "Please enter the number of the production you wish to explore."
+                    choice = gets.strip
+                    inst.production_select(choice)
                 elsif Year.valid?(year)
                     YearScraper.new(year)
                     inst = Year.find(year)
                     inst.print
-                    # puts "========================"
-                    # puts "Enter the number of the production you wish to explore"
-                    # choice = gets.strip
-                    # inst.production(choice)
+                    puts "========================"
+                    puts "Please enter the number of the production you wish to explore."
+                    choice = gets.strip.to_i
+                    inst.production_select(choice)
                 else
                     clear_term
                     puts "\n I'm sorry, that year is invalid."
@@ -73,14 +73,14 @@ class Theatre_Explore::CLI
 
     def show_input
         puts "Right On!"
-                puts "========================"
+                
                 puts "What show would you like to explore?"
     end
 
     def goodbye
         system("clear")
         puts "Thanks for exploring!"
-        # binding.pry
+        binding.pry
         puts "Goodbye!"
         exit
     end
