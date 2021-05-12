@@ -82,8 +82,9 @@ Final prompt
 ### Fix notes
 
 Todo:
-- ShowScraper won't work on "Year Links"
-- Can Mechanize enter "Production History" link on year entry?
+- Build ProductionScraper functions to instantiate Shows or connect to pre-existing
+- Build Production class
+
 
 
 

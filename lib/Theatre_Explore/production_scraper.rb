@@ -17,8 +17,11 @@ class ProductionScraper
         
     end
 
-    def show_exist_connect
-        Show.exist?(@page.search("h1").text.gsub(" Production History",""))
+    def create_show
+        show_label = @page.title[/^[^-]*/].strip
         
+        if !!Show.exist?(show_label)
+            ShowScraper.new(self.main.uri.to_s)
+        end
     end
 end

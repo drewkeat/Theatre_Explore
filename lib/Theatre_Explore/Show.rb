@@ -2,10 +2,11 @@ class Show
     attr_accessor :label, :details, :productions
     
     @@all = []
-
+    
     def initialize(label, details)
         @label = label
         @details = details
+        @productions = []
         self.save
     end
 
