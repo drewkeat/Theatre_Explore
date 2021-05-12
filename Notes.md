@@ -83,7 +83,7 @@ Final prompt
 
 Todo:
 - ShowScraper won't work on "Year Links"
-- 
+- Can Mechanize enter "Production History" link on year entry?
 
 
 
