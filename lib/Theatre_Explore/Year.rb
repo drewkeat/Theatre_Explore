@@ -8,12 +8,12 @@ class Year
         save
     end
 
-    # def self.find_production
-
-    # end
-
     def save
         @@all << self
+    end
+
+    def self.all
+        @@all
     end
 
     def production_select(choice)

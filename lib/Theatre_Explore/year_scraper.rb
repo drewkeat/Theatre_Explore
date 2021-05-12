@@ -4,7 +4,7 @@ class YearScraper
         agent = Mechanize.new
         @page = agent.get("https://www.broadwayworld.com/browseshows.cfm?showtype=BR&open_yr=#{year}")
         @label = year
-        build_year
+        build_year if !Year.exist?(@label)
     end
 
     def build_year
