@@ -1,9 +1,9 @@
 class Year
-    attr_accessor :shows, :label
+    attr_accessor :productions, :label
     @@all = []
 
-    def initialize(label, shows)
-        @shows = shows 
+    def initialize(label, productions)
+        @productions = productions 
         @label = label
         save
     end
@@ -17,9 +17,8 @@ class Year
     end
 
     def production_select(choice)
-        url = @shows[@shows.keys[choice-1]]
-        ShowScraper.new(url).show.print
-
+        url = @productions[@productions.keys[choice-1]]
+        #Production_Scraper.new(url)
     end
 
     def self.find(year)
@@ -35,6 +34,6 @@ class Year
     end
 
     def print
-        self.shows.keys.each.with_index(1) {|show, i| puts "#{i}. #{show}"}
+        self.productions.keys.each.with_index(1) {|show, i| puts "#{i}. #{show}"}
     end
 end

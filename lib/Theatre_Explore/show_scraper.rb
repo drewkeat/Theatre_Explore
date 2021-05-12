@@ -2,7 +2,7 @@ class ShowScraper
     attr_accessor :page, :show
     def initialize(url)
         agent = Mechanize.new
-        @page = agent.get(url) #lk 
+        @page = agent.get(url)
         self.build_show
     end
 

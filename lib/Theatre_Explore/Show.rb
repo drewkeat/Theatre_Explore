@@ -1,5 +1,5 @@
 class Show
-    attr_accessor :label, :details
+    attr_accessor :label, :details, :productions
     
     @@all = []
 
@@ -20,6 +20,10 @@ class Show
         @@all
     end
 
+    def self.exist?(label)
+        !!self.find(label)
+    end
+    
     def self.find(label)
         @@all.detect {|ele| ele.label == label}
     end

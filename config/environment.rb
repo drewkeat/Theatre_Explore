@@ -6,6 +6,7 @@ require_relative "../lib/Theatre_Explore/year_scraper"
 require_relative "../lib/Theatre_Explore/Year"
 require_relative "../lib/Theatre_Explore/show_scraper"
 require_relative "../lib/Theatre_Explore/Show"
+require_relative "../lib/Theatre_Explore/production_scraper"
 
 require 'pry'
 require 'nokogiri'
