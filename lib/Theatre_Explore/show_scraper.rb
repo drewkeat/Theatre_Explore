@@ -1,37 +1,24 @@
 class ShowScraper
-    attr_accessor :label, :page
+    attr_accessor :page
     def initialize(url)
         agent = Mechanize.new
-        @page = agent.get(url)
+        @page = agent.get(url) #lk 
     end
 
     def build_show
-        details = build_details
-        cast = get_cast
-        creative = get_creative
-
-        Show.new(details, cast, creative)
+        details = page.search("style+ .col-12")
+        title = page.search(".header").text.gsub(/\s-.*/,"")
+        Show.new(title, details)
     end
 
     def build_details
-        final = {}
-        head = page.search("h1+ h2").text.gsub(" Show Information","")
-        details_o = @page.search(".production-info td").map {|d| d.text}
-            details_o.each.with_index do |d,i|
-                if i % 2 == 0
-                    final[d] = details_o[i+1]
-                end
-            end
-        final[:title] = head
-        final
+     details = ""
+     object = @page.search("style+ .col-12")
+     object.children.each.with_index do |detail, i|
+        if i.between?(4,10)
+            details += detail
+        end
+     end
+     details
     end
-
-    def get_cast
-
-    end
-
-    def get_creative
-
-    end
-
 end

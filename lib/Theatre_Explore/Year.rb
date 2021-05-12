@@ -16,10 +16,6 @@ class Year
         @@all << self
     end
 
-    # def production(title)
-    #     self.shows[title]
-    # end
-
     def self.find(year)
         @@all.detect {|ele| ele.label == year}
     end

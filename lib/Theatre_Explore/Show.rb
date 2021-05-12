@@ -1,13 +1,16 @@
 class Show
-    attr_accessor :details, :cast, :creative
+    attr_accessor :label, :details
     
     @@all = []
 
-    def initialize(details, cast, creative)
-        @details = details
-        @cast = cast
-        @creative = creative
+    def initialize(label, details)
+        @label = label
+        @label = details
         self.save
+    end
+
+    def self.all
+        @@all
     end
 
     def save

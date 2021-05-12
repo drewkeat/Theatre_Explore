@@ -32,9 +32,7 @@ class Theatre_Explore::CLI
                 year_input
             when "2"
                 clear_term
-                puts "Right On!"
-                puts "========================"
-                puts "What show would you like to explore?"
+                show_input
             when 'exit'
                 goodbye
                 
@@ -71,6 +69,12 @@ class Theatre_Explore::CLI
                     puts "Would you like to try again?\n"
                     display_options
                 end
+    end
+
+    def show_input
+        puts "Right On!"
+                puts "========================"
+                puts "What show would you like to explore?"
     end
 
     def goodbye
