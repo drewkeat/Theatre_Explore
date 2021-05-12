@@ -5,12 +5,23 @@ class Show
 
     def initialize(label, details)
         @label = label
-        @label = details
+        @details = details
         self.save
+    end
+
+    def print
+        puts "==============="
+        puts "#{@label}"
+        puts "==============="
+        puts details
     end
 
     def self.all
         @@all
+    end
+
+    def self.find(label)
+        @@all.detect {|ele| ele.label == label}
     end
 
     def save

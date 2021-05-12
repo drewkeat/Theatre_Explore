@@ -3,11 +3,13 @@ class ShowScraper
     def initialize(url)
         agent = Mechanize.new
         @page = agent.get(url) #lk 
+        self.build_show
     end
 
     def build_show
-        details = page.search("style+ .col-12")
-        title = page.search(".header").text.gsub(/\s-.*/,"")
+        details = build_details
+        title = @page.search(".header").text.gsub(/\s-.*/,"")
+        binding.pry
         Show.new(title, details)
     end
 
