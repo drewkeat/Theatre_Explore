@@ -3,6 +3,9 @@ class ProductionScraper
     def initialize(url)
         agent = Mechanize.new
         @page = agent.get(url)
+        get_pages
+        create_show
+        
     end
 
     def get_pages
@@ -20,7 +23,7 @@ class ProductionScraper
     def create_show
         show_label = @page.title[/^[^-]*/].strip
         
-        if !!Show.exist?(show_label)
+        if !Show.exist?(show_label)
             ShowScraper.new(self.main.uri.to_s)
         end
     end

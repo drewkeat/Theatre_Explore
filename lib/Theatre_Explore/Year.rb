@@ -18,7 +18,7 @@ class Year
 
     def production_select(choice)
         url = @productions[@productions.keys[choice-1]]
-        #Production_Scraper.new(url)
+        ProductionScraper.new(url)
     end
 
     def self.find(year)
