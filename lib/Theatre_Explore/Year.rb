@@ -1,5 +1,5 @@
 class Year
-    attr_accessor :productions, :label
+    attr_accessor :label, :productions
     @@all = []
 
     def initialize(label, productions)
@@ -15,7 +15,7 @@ class Year
     def self.all
         @@all
     end
-
+    # DELETE THIS METHOD ONCE ITTERATIVE PRODUCTION SCRAPING HAPPENS WITHIN YEAR SCRAPES 
     def production_select(choice)
         url = @productions[@productions.keys[choice-1]]
         ProductionScraper.new(url)
@@ -23,10 +23,6 @@ class Year
 
     def self.find(year)
         @@all.detect {|ele| ele.label == year}
-    end
-
-    def self.exist?(year)
-        !!self.find(year)
     end
 
     def self.valid?(year)

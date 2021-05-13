@@ -28,3 +28,10 @@ def reload!(print = true)
 end
 
 IRB.start(__FILE__)
+YearScraper.new('2009')
+YearScraper.new('2013')
+YearScraper.new('2016')
+
+y2009 = Year.find('2009')
+y2013 = Year.find('2013')
+y2016 = Year.find('2016')

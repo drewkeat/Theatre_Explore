@@ -1,11 +1,10 @@
 class Show
-    attr_accessor :label, :details, :productions
+    attr_accessor :label, :productions, :type
     
     @@all = []
     
-    def initialize(label, details)
+    def initialize(label)
         @label = label
-        @details = details
         @productions = []
         self.save
     end
@@ -14,17 +13,13 @@ class Show
         puts "========================"
         puts "#{@label}"
         puts "========================"
-        puts details
+        puts "list of productions"
     end
 
     def self.all
         @@all
     end
 
-    def self.exist?(label)
-        !!self.find(label)
-    end
-    
     def self.find(label)
         @@all.detect {|ele| ele.label == label}
     end

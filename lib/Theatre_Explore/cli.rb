@@ -37,6 +37,7 @@ class Theatre_Explore::CLI
                 goodbye
                 
             else
+                clear_term
                 puts "I'm not sure what you want."
                 display_options
             end
@@ -55,6 +56,7 @@ class Theatre_Explore::CLI
                     puts "========================"
                     puts "Please enter the number of the production you wish to explore."
                     choice = gets.strip.to_i
+                    #REPLACE THIS LINE WITH year.productions[choice - 1] ONCE ITTERATIVE PRODUCTION SCRAPING HAPPENS WITHIN YEAR SCRAPE
                     year.production_select(choice)
                 else
                     clear_term
@@ -66,7 +68,6 @@ class Theatre_Explore::CLI
 
     def show_input
         puts "Right On!"
-                
                 puts "What show would you like to explore?"
     end
 
