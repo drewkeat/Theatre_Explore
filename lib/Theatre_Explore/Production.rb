@@ -12,6 +12,10 @@ class Production
         @@all
     end
 
+    def self.find(label)
+        @@all.detect {|p| p.label == label}
+    end
+
     def save
         @@all << self
     end

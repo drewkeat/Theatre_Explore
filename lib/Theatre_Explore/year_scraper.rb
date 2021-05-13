@@ -11,7 +11,6 @@ class YearScraper
         #returns hash with production titles as keys and production links as values
         shows = {}
         list_object = @page.search("p+ ul li")
-        #REPLACE METHOD BELOW WITH PRODUCTION SCRAPER ITTERATION AND RETURN ARRAY OF PRODUCTION OBJECTS TO "SHOWS"
         list_object.each do |show|
             shows[show.text] = show.at("a").attribute("href").value
         end

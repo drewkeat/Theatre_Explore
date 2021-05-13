@@ -15,8 +15,8 @@ class Year
     def self.all
         @@all
     end
-    # DELETE THIS METHOD ONCE ITTERATIVE PRODUCTION SCRAPING HAPPENS WITHIN YEAR SCRAPES 
-    def production_select(choice)
+
+    def create_production(choice)
         url = @productions[@productions.keys[choice-1]]
         ProductionScraper.new(url)
     end

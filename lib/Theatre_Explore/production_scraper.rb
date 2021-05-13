@@ -6,7 +6,7 @@ class ProductionScraper
         get_pages
         show = @page.title[/^[^-]*/].strip
         label = self.main.search(".header").text
-        Production.new(show, label)
+        Production.new(show, label) if !Production.find(label)
     end
 
     def get_pages

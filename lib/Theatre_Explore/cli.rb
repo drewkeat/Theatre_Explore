@@ -49,15 +49,21 @@ class Theatre_Explore::CLI
         puts "========================"
         puts "What year would you like to explore?"
             input = gets.strip
-                if Year.valid?(input)
+                if Year.find(input)
+                    year = Year.find(input)
+                    year.print
+                    puts "========================"
+                    puts "Please enter the number of the production you wish to explore."
+                    choice = gets.strip.to_i
+                    year.create_production(choice)
+                elsif Year.valid?(input) && !Year.find(input)
                     YearScraper.new(input)
                     year = Year.find(input)
                     year.print
                     puts "========================"
                     puts "Please enter the number of the production you wish to explore."
                     choice = gets.strip.to_i
-                    #REPLACE THIS LINE WITH year.productions[choice - 1] ONCE ITTERATIVE PRODUCTION SCRAPING HAPPENS WITHIN YEAR SCRAPE
-                    year.production_select(choice)
+                    year.create_production(choice)
                 else
                     clear_term
                     puts "\n I'm sorry, that year is invalid."
