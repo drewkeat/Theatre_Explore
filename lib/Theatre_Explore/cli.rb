@@ -57,7 +57,7 @@ class Theatre_Explore::CLI
                     choice = gets.strip.to_i
                     year.create_production(choice)
                 elsif Year.valid?(input) && !Year.find(input)
-                    YearScraper.new(input)
+                    Scraper.new('year', input)
                     year = Year.find(input)
                     year.print
                     puts "========================"

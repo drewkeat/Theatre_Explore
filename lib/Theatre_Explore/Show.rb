@@ -1,5 +1,5 @@
 class Show
-    attr_accessor :label, :productions, :type
+    attr_accessor :label, :type, :productions
     
     @@all = []
     

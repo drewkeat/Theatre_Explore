@@ -1,10 +1,22 @@
-class YearScraper
-    attr_accessor :page, :label
-    def initialize(year)
+class Scraper
+    attr_accessor :page, :input, :label
+    def initialize(type, input)
+        @input = input
+        case type
+        when "year"
+            scrape_year(input)
+        when "show"
+            scrape_show(input)
+        else
+            nil
+        end
+    end
+
+    def scrape_year(year)
         agent = Mechanize.new
         @page = agent.get("https://www.broadwayworld.com/browseshows.cfm?showtype=BR&open_yr=#{year}")
         @label = year
-        build_year if !Year.find(@label)
+        build_year
     end
 
     def build_year
@@ -16,4 +28,5 @@ class YearScraper
         end
         Year.new(@label, shows)
     end
+
 end

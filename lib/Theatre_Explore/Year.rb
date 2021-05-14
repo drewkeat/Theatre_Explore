@@ -1,5 +1,5 @@
 class Year
-    attr_accessor :label, :productions
+    attr_accessor :label, :productions, :display_list
     @@all = []
 
     def initialize(label, productions)

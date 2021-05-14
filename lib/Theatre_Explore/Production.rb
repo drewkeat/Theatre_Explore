@@ -1,5 +1,5 @@
 class Production
-    attr_accessor :show, :label #:details, :cast, :crew
+    attr_accessor :show, :label, :year #:details, :cast, :crew
     @@all = []
     def initialize(show, label)
         @show = show
