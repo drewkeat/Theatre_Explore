@@ -33,4 +33,10 @@ class Year
     def print
         self.display_list.keys.each.with_index(1) {|show, i| puts "#{i}. #{show}"}
     end
+
+    def print_production(input)
+        show = self.display_list.keys[input - 1]
+        production = Show.find(show).productions.detect {|p| p.year == self.label}
+        production.print
+    end
 end

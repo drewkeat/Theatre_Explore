@@ -5,11 +5,11 @@ class Production
         @show = show
         @type = type
         @label = label
-        join_show(show)
         @year = year
         @year = Time.now.year if @year == nil
-        join_year(year)
         self.save
+        join_show(show)
+        join_year(year)
     end
 
     def self.all
@@ -40,5 +40,14 @@ class Production
             Scraper.new("year", year)
             Year.find(year).productions << self
         end
+    end
+
+    def print
+        puts "========================"
+        puts "#{@label}"
+        puts "========================"
+        puts "Show type: #{type}"
+        puts ""
+        puts "Details will be placed here"
     end
 end

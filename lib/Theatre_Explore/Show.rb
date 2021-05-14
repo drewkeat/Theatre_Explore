@@ -14,7 +14,10 @@ class Show
         puts "========================"
         puts "#{@label}"
         puts "========================"
-        puts "list of productions"
+        list = @productions.sort_by {|p| p.year}
+        list.each.with_index(1) do |p, i|
+            puts "#{i}) #{p.label}"
+        end
     end
 
     def self.all
@@ -29,5 +32,3 @@ class Show
         @@all << self
     end
 end
-
-#Initialize with "Type" information

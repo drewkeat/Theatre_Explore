@@ -33,7 +33,7 @@ class Scraper
         year = main_page.at(".header").text[/\d{4}/]
         label = main_page.at(".header").text
         type = self.get_type
-        Production.new(show, label, year, type)
+        Production.new(show, label, year, type) if !Production.find(label)
     end
 
     def get_type

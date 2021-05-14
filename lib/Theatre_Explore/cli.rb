@@ -44,6 +44,7 @@ class Theatre_Explore::CLI
         end
     end
 
+    #This needs fixing!
     def year_input
         puts "Excellent!"
         puts "========================"
@@ -56,6 +57,8 @@ class Theatre_Explore::CLI
                     puts "Please enter the number of the production you wish to explore."
                     choice = gets.strip.to_i
                     year.create_production(choice)
+                    clear_term
+                    year.print_production(choice)
                 elsif Year.valid?(input) && !Year.find(input)
                     Scraper.new('year', input)
                     year = Year.find(input)
@@ -65,6 +68,8 @@ class Theatre_Explore::CLI
                     puts "Please enter the number of the production you wish to explore."
                     choice = gets.strip.to_i
                     year.create_production(choice)
+                    clear_term
+                    year.print_production(choice)
                 else
                     clear_term
                     puts "\n I'm sorry, that year is invalid."
