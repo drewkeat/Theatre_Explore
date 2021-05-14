@@ -3,8 +3,9 @@ class Show
     
     @@all = []
     
-    def initialize(label)
+    def initialize(label, type)
         @label = label
+        @type = type
         @productions = []
         self.save
     end

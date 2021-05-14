@@ -1,8 +1,9 @@
 class Production
-    attr_accessor :show, :label, :year #:details, :cast, :crew
+    attr_accessor :show, :label, :year, :type #:details, :cast, :crew
     @@all = []
-    def initialize(show, label, year)
+    def initialize(show, label, year, type)
         @show = show
+        @type = type
         @label = label
         join_show(show)
         @year = year
@@ -26,7 +27,7 @@ class Production
         if Show.find(show)
             Show.find(show).productions << self
         else
-            s = Show.new(show)
+            s = Show.new(show, @type)
             s.productions << self
         end
     end
