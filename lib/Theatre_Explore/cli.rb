@@ -44,7 +44,7 @@ class Theatre_Explore::CLI
         end
     end
 
-    #This needs fixing!
+    #This needs cleaning! Allow users to search further or exit after production#print
     def year_input
         puts "Excellent!"
         puts "========================"
@@ -77,7 +77,7 @@ class Theatre_Explore::CLI
                     display_options
                 end
     end
-
+    #This needs functionality!
     def show_input
         puts "Right On!"
                 puts "What show would you like to explore?"
