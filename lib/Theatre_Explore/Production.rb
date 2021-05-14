@@ -7,6 +7,7 @@ class Production
         @label = label
         join_show(show)
         @year = year
+        @year = Time.now.year if @year == nil
         join_year(year)
         self.save
     end

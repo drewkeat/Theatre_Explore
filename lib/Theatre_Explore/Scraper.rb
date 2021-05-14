@@ -32,7 +32,16 @@ class Scraper
         main_page = @page.link_with(:href => /shows\/.*\d*\.html/).click
         year = main_page.at(".header").text[/\d{4}/]
         label = main_page.at(".header").text
-        type = page.search(".production-table span").last.text
+        type = self.get_type #page.search(".production-table span").last.text
         Production.new(show, label, year, type)
+    end
+
+    def get_type
+        table = @page.search(".production-table span")
+        table.each.with_index do |e, i|
+            if e.text == "Show type"
+                return table[i + 1].text
+            end
+        end
     end
 end
