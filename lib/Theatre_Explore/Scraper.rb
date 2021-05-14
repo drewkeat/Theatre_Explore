@@ -1,5 +1,5 @@
 class Scraper
-    attr_accessor :page, :input, :label
+    attr_accessor :page, :input
     def initialize(type, input)
         @input = input
         case type
@@ -15,18 +15,23 @@ class Scraper
     def scrape_year(year)
         agent = Mechanize.new
         @page = agent.get("https://www.broadwayworld.com/browseshows.cfm?showtype=BR&open_yr=#{year}")
-        @label = year
-        build_year
-    end
-
-    def build_year
-        #returns hash with production titles as keys and production links as values
+        list_object = @page.links_with(:href => /showid=/)
         shows = {}
-        list_object = @page.search("p+ ul li")
         list_object.each do |show|
-            shows[show.text] = show.at("a").attribute("href").value
+            shows[show.text] = show.href
         end
-        Year.new(@label, shows)
+        label = year
+        Year.new(label, shows)
     end
 
+    def scrape_show(url)
+        @page = Mechanize.new.get(url).link_with(:text => "Production").click
+        show = page.at("h1").text.gsub(' Production History','')
+        creative_page = @page.link_with(:text => "Creative").click
+        cast_page = @page.link_with(:text => "Cast").click
+        main_page = @page.link_with(:href => /shows\/.*\d*\.html/).click
+        year = main_page.at(".header").text[/\d{4}/]
+        label = main_page.at(".header").text
+        Production.new(show, label, year)
+    end
 end

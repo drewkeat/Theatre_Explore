@@ -28,3 +28,5 @@ class Show
         @@all << self
     end
 end
+
+#Initialize with "Type" information

@@ -2,9 +2,10 @@ class Year
     attr_accessor :label, :productions, :display_list
     @@all = []
 
-    def initialize(label, productions)
-        @productions = productions 
+    def initialize(label, list)
         @label = label
+        @display_list = list
+        @productions = []
         save
     end
 
@@ -17,8 +18,8 @@ class Year
     end
 
     def create_production(choice)
-        url = @productions[@productions.keys[choice-1]]
-        ProductionScraper.new(url)
+        url = @display_list[@display_list.keys[choice-1]]
+        Scraper.new("show", url)
     end
 
     def self.find(year)
@@ -30,6 +31,6 @@ class Year
     end
 
     def print
-        self.productions.keys.each.with_index(1) {|show, i| puts "#{i}. #{show}"}
+        self.display_list.keys.each.with_index(1) {|show, i| puts "#{i}. #{show}"}
     end
 end
