@@ -62,7 +62,6 @@ class Theatre_Explore::CLI
                 elsif Year.valid?(input) && !Year.find(input)
                     Scraper.new('year', input)
                     year = Year.find(input)
-                    binding.pry
                     year.print
                     puts "========================"
                     puts "Please enter the number of the production you wish to explore."

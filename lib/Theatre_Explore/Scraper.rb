@@ -25,7 +25,7 @@ class Scraper
     end
 
     def scrape_show(url)
-        @page = Mechanize.new.get(url).link_with(:text => "Production").click
+        @page = Mechanize.new.get(url).link_with(:href => /backstage.php/).click
         show = page.at("h1").text.gsub(' Production History','')
         creative_page = @page.link_with(:text => "Creative").click
         cast_page = @page.link_with(:text => "Cast").click
