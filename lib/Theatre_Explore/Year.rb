@@ -36,7 +36,7 @@ class Year
 
     def print_production(input)
         show = self.display_list.keys[input - 1]
-        production = Show.find(show).productions.detect {|p| p.year == self.label}
+        production = productions.detect {|e| e.label = show}
         production.print
     end
 end
