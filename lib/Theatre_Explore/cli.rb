@@ -35,10 +35,11 @@ class Theatre_Explore::CLI
                 show_input
             when 'exit'
                 goodbye
-                
             else
                 clear_term
                 puts "I'm not sure what you want."
+                sleep(1)
+                clear_term
                 display_options
             end
         end
@@ -75,6 +76,8 @@ class Theatre_Explore::CLI
                     clear_term
                     puts "\n I'm sorry, that year is invalid."
                     puts "Would you like to try again?\n"
+                    sleep(1)
+                    clear_term
                     display_options
                 end
     end
@@ -97,6 +100,8 @@ class Theatre_Explore::CLI
         else
             clear_term
             puts "I'm not sure what you want."
+            sleep(1)
+            clear_term
             display_options
         end
     end

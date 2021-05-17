@@ -46,9 +46,8 @@ class Scraper
 
     def get_details
         hash = {}
-        binding.pry
-        if @main_page.at("style+ .col-12").text[/; \w.*\n/]
-            summary = @main_page.at("style+ .col-12").text[/; \w.*\n/]
+        if @main_page.at("style+ .col-12").text[/; (\w.*\.)\w/]
+            summary = @main_page.at("style+ .col-12").text[/; (\w.*\.)\w/]
             summary = /; (\w.*\.)\w/.match(summary)[1].strip
         else
             summary = "Not available for this production."

@@ -54,7 +54,7 @@ class Production
         #{details.values.first}\n
         "
         details.keys.each.with_index do |k, i|
-            puts "#{k}\t --- \t #{details[k]}" if i > 0
+            puts "#{k.rjust(16)} ------ #{details[k]}" if i > 0
         end
     end
 end
