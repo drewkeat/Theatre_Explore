@@ -27,13 +27,12 @@ class Scraper
     def scrape_show(url)
         @page = Mechanize.new.get(url).link_with(:href => /backstage.php/).click
         show = page.at("h1").text.gsub(' Production History','')
-        creative_page = @page.link_with(:text => "Creative").click
-        cast_page = @page.link_with(:text => "Cast").click
-        main_page = @page.link_with(:href => /shows\/.*\d*\.html/).click
-        year = main_page.at(".header").text[/\d{4}/]
-        label = main_page.at(".header").text
+        @main_page = @page.link_with(:href => /shows\/.*\d*\.html/).click
+        year = @main_page.at(".header").text[/\d{4}/]
+        label = @main_page.at(".header").text
         type = self.get_type
-        Production.new(show, label, year, type) if !Production.find(label)
+        details = get_details
+        Production.new(show, label, year, type, details) if !Production.find(label)
     end
 
     def get_type
@@ -43,5 +42,22 @@ class Scraper
                 return table[i + 1].text
             end
         end
+    end
+
+    def get_details
+        hash = {}
+        binding.pry
+        if @main_page.at("style+ .col-12").text[/; \w.*\n/]
+            summary = @main_page.at("style+ .col-12").text[/; \w.*\n/]
+            summary = /; (\w.*\.)\w/.match(summary)[1].strip
+        else
+            summary = "Not available for this production."
+        end
+        hash["Summary:"] = summary
+        details = page.search(".production-info td")
+        details.each.with_index do |d, i|
+            hash[d.text] = details[i+1].text if i % 2 == 0
+        end
+        hash
     end
 end

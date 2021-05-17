@@ -59,6 +59,7 @@ class Theatre_Explore::CLI
                     year.create_production(choice)
                     clear_term
                     year.print_production(choice)
+                    repeat_prompt
                 elsif Year.valid?(input) && !Year.find(input)
                     Scraper.new('year', input)
                     year = Year.find(input)
@@ -69,6 +70,7 @@ class Theatre_Explore::CLI
                     year.create_production(choice)
                     clear_term
                     year.print_production(choice)
+                    repeat_prompt
                 else
                     clear_term
                     puts "\n I'm sorry, that year is invalid."
@@ -82,6 +84,22 @@ class Theatre_Explore::CLI
                 puts "What show would you like to explore?"
     end
 
+    def repeat_prompt
+        puts ""
+        puts "Would you like to explore more? (Yes or No)"
+        input = gets.strip.downcase
+        case input
+        when "yes", "y"
+            clear_term
+            display_options
+        when "no", "n"
+            goodbye
+        else
+            clear_term
+            puts "I'm not sure what you want."
+            display_options
+        end
+    end
     def goodbye
         system("clear")
         puts "Thanks for exploring!"
