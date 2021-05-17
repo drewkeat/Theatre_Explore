@@ -1,13 +1,8 @@
 class Theatre_Explore::CLI
-    def clear_term
-        system("clear")
-    end
-
     def call
-        clear_term
+        system("clear")
         puts "Welcome to Theatre Explore!"
         puts "\nHow would you like to search?"
-
         display_options
     end
 
@@ -28,18 +23,18 @@ class Theatre_Explore::CLI
             input = gets.strip.downcase
             case input
             when "1"
-                clear_term
+                system("clear")
                 year_input
             when "2"
-                clear_term
+                system("clear")
                 show_input
             when 'exit'
                 goodbye
             else
-                clear_term
+                system("clear")
                 puts "I'm not sure what you want."
                 sleep(1)
-                clear_term
+                system("clear")
                 display_options
             end
         end
@@ -49,7 +44,9 @@ class Theatre_Explore::CLI
         puts "Excellent!"
         puts "========================"
         puts "What year would you like to explore?"
+        puts "I can pull records dating back to 1832."
             input = gets.strip
+            #Refactor for Year.find_or_create(input) remove the elsif condition
                 if Year.find(input)
                     year = Year.find(input)
                     year.print
@@ -57,7 +54,7 @@ class Theatre_Explore::CLI
                     puts "Please enter the number of the production you wish to explore."
                     choice = gets.strip.to_i
                     year.create_production(choice)
-                    clear_term
+                    system("clear")
                     year.print_production(choice)
                     repeat_prompt
                 elsif Year.valid?(input) && !Year.find(input)
@@ -68,15 +65,14 @@ class Theatre_Explore::CLI
                     puts "Please enter the number of the production you wish to explore."
                     choice = gets.strip.to_i
                     year.create_production(choice)
-                    clear_term
+                    system("clear")
                     year.print_production(choice)
                     repeat_prompt
                 else
-                    clear_term
+                    system("clear")
                     puts "\n I'm sorry, that year is invalid."
-                    puts "Would you like to try again?\n"
                     sleep(1)
-                    clear_term
+                    system("clear")
                     display_options
                 end
     end
@@ -86,12 +82,26 @@ class Theatre_Explore::CLI
         puts "What show would you like to explore?"
             input = gets.strip
             list = show_search(input)
-        clear_term
+        system("clear")
+        if list.keys.size < 1
+            puts "I'm sorry, there doesn't seem to be a show with that title."
+            sleep(1)
+            repeat_prompt
+        else    
             list.keys.each.with_index(1) {|k,i| puts "#{i}) #{k}"}
+        end
         puts "What production would you like to learn more about?"
             input = gets.strip.to_i
-            Scraper.new('show', list[list.keys[input-1]])
-        clear_term
+            if input.between?(1,list.keys.size)
+                Scraper.new('show', list[list.keys[input-1]])
+            else
+                system("clear")
+                puts "I'm not sure what you want."
+                sleep(1)
+                system("clear")
+                repeat_prompt
+            end
+        system("clear")
         Production.all.last.print
         repeat_prompt
     end
@@ -112,15 +122,15 @@ class Theatre_Explore::CLI
         input = gets.strip.downcase
         case input
         when "yes", "y"
-            clear_term
+            system("clear")
             display_options
         when "no", "n"
             goodbye
         else
-            clear_term
+            system("clear")
             puts "I'm not sure what you want."
             sleep(1)
-            clear_term
+            system("clear")
             display_options
         end
     end

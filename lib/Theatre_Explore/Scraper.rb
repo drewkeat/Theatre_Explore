@@ -44,6 +44,7 @@ class Scraper
                 return table[i + 1].text
             end
         end
+        "Unavailable"
     end
 
     def get_details
