@@ -64,7 +64,6 @@ class Scraper
     end
 
     def scrape_search(input)
-        results = {}
         form = Mechanize.new.get("https://www.broadwayworld.com").forms.first
         form.field("q").value = input
         @page = form.submit

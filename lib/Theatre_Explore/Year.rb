@@ -22,7 +22,12 @@ class Year
         Scraper.new("show", url)
     end
 
-    def self.find(year)
+    def self.find_or_create(year)
+        if @@all.detect {|ele| ele.label == year}
+            @@all.detect {|ele| ele.label == year}
+        else
+            Scraper.new('year', year)
+        end
         @@all.detect {|ele| ele.label == year}
     end
 

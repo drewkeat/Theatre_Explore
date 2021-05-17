@@ -31,13 +31,17 @@ class Theatre_Explore::CLI
             when 'exit'
                 goodbye
             else
-                system("clear")
-                puts "I'm not sure what you want."
-                sleep(1)
-                system("clear")
-                display_options
+                unclear
             end
         end
+    end
+
+    def unclear
+        system("clear")
+        puts "I'm not sure what you want."
+        sleep(1)
+        system("clear")
+        display_options
     end
 
     def year_input
@@ -45,21 +49,10 @@ class Theatre_Explore::CLI
         puts "========================"
         puts "What year would you like to explore?"
         puts "I can pull records dating back to 1832."
+        puts ""
             input = gets.strip
-            #Refactor for Year.find_or_create(input) remove the elsif condition
-                if Year.find(input)
-                    year = Year.find(input)
-                    year.print
-                    puts "========================"
-                    puts "Please enter the number of the production you wish to explore."
-                    choice = gets.strip.to_i
-                    year.create_production(choice)
-                    system("clear")
-                    year.print_production(choice)
-                    repeat_prompt
-                elsif Year.valid?(input) && !Year.find(input)
-                    Scraper.new('year', input)
-                    year = Year.find(input)
+                if Year.valid?(input)
+                    year = Year.find_or_create(input)
                     year.print
                     puts "========================"
                     puts "Please enter the number of the production you wish to explore."
@@ -80,6 +73,7 @@ class Theatre_Explore::CLI
     def show_input
         puts "Right On!"
         puts "What show would you like to explore?"
+        puts ""
             input = gets.strip
             list = show_search(input)
         system("clear")
@@ -91,6 +85,7 @@ class Theatre_Explore::CLI
             list.keys.each.with_index(1) {|k,i| puts "#{i}) #{k}"}
         end
         puts "What production would you like to learn more about?"
+        puts ""
             input = gets.strip.to_i
             if input.between?(1,list.keys.size)
                 Scraper.new('show', list[list.keys[input-1]])

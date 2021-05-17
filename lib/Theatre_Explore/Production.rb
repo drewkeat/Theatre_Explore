@@ -35,11 +35,11 @@ class Production
     end
 
     def join_year(year)
-        if Year.find(year)
-            Year.find(year).productions << self
+        if Year.find_or_create(year)
+            Year.find_or_create(year).productions << self
         else
             Scraper.new("year", year)
-            Year.find(year).productions << self
+            Year.find_or_create(year).productions << self
         end
     end
 
