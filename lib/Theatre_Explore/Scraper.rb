@@ -7,6 +7,8 @@ class Scraper
             scrape_year(input)
         when "show"
             scrape_show(input)
+        when "search"
+            scrape_search(input)
         else
             nil
         end
@@ -58,5 +60,12 @@ class Scraper
             hash[d.text] = details[i+1].text if i % 2 == 0
         end
         hash
+    end
+
+    def scrape_search(input)
+        results = {}
+        form = Mechanize.new.get("https://www.broadwayworld.com").forms.first
+        form.field("q").value = input
+        @page = form.submit
     end
 end

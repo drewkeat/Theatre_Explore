@@ -45,7 +45,6 @@ class Theatre_Explore::CLI
         end
     end
 
-    #This needs cleaning! Allow users to search further or exit after production#print
     def year_input
         puts "Excellent!"
         puts "========================"
@@ -81,10 +80,30 @@ class Theatre_Explore::CLI
                     display_options
                 end
     end
-    #This needs functionality!
+    #This likely needs to be refactored
     def show_input
         puts "Right On!"
-                puts "What show would you like to explore?"
+        puts "What show would you like to explore?"
+            input = gets.strip
+            list = show_search(input)
+        clear_term
+            list.keys.each.with_index(1) {|k,i| puts "#{i}) #{k}"}
+        puts "What production would you like to learn more about?"
+            input = gets.strip.to_i
+            Scraper.new('show', list[list.keys[input-1]])
+        clear_term
+        Production.all.last.print
+        repeat_prompt
+    end
+
+    def show_search(input)
+        result = Scraper.new("search", input)
+            list = {}
+            results = result.page.search("td span")
+                results.each do |production|
+                    list[production.text] = "https://www.broadwayworld.com#{production.children.at("a").attribute("href").value}"
+                end
+        list
     end
 
     def repeat_prompt
