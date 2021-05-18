@@ -49,10 +49,10 @@ class Theatre_Explore::CLI
     end
 
     def year_input
-        puts "Excellent!"
         puts "========================"
         puts "What year would you like to explore?"
         puts "I can pull records dating back to 1832."
+        puts "========================"
         puts ""
             input = gets.strip
                 if Year.valid?(input)
@@ -67,7 +67,9 @@ class Theatre_Explore::CLI
                     repeat_prompt
                 else
                     system("clear")
+                    puts "========================"
                     puts "\n I'm sorry, that year is invalid."
+                    puts "========================"
                     sleep(1)
                     system("clear")
                     display_options
@@ -75,8 +77,9 @@ class Theatre_Explore::CLI
     end
     #This likely needs to be refactored
     def show_input
-        puts "Right On!"
+        puts "===================================="
         puts "What show would you like to explore?"
+        puts "===================================="
         puts ""
             input = gets.strip
             list = show_search(input)
@@ -126,18 +129,18 @@ class Theatre_Explore::CLI
         when "no", "n"
             goodbye
         else
-            system("clear")
-            puts "I'm not sure what you want."
-            sleep(1)
-            system("clear")
-            display_options
+            unclear
         end
     end
+
     def goodbye
         system("clear")
-        puts "Thanks for exploring!"
+        puts "==========================="
+        puts "|| Thanks for exploring! ||"
+        puts "---------------------------"
+        puts "||        Goodbye!       ||"
+        puts "==========================="
         binding.pry
-        puts "Goodbye!"
         exit
     end
 
