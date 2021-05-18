@@ -1,7 +1,11 @@
 class Theatre_Explore::CLI
     def call
         system("clear")
-        puts "Welcome to Theatre Explore!"
+        puts "
+        =====================================
+        ||   Welcome to Theatre Explore!   ||
+        =====================================
+        "
         puts "\nHow would you like to search?"
         display_options
     end
@@ -16,7 +20,7 @@ class Theatre_Explore::CLI
     end
 
     def main_prompt
-        puts
+        puts ""
         puts "Input the corresponding number for your selection." 
         input = ''
         until input == 'exit'
