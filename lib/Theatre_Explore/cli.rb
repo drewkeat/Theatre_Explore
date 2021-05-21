@@ -140,7 +140,6 @@ class Theatre_Explore::CLI
         puts "---------------------------"
         puts "||        Goodbye!       ||"
         puts "==========================="
-        binding.pry
         exit
     end
 
