@@ -61,9 +61,9 @@ class Theatre_Explore::CLI
                     puts "========================"
                     puts "Please enter the number of the production you wish to explore."
                     choice = gets.strip.to_i
-                    year.create_production(choice)
+                    Production.create_from_year(year, choice)
                     system("clear")
-                    year.print_production(choice)
+                    year.select_production(choice).print
                     repeat_prompt
                 else
                     system("clear")

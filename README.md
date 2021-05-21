@@ -9,18 +9,15 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'Theatre_Explore'
 ```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
+To use this gem, type the following command into your terminal:
 
     $ gem install Theatre_Explore
 
+Once the gem has been added to your system, use the command `Theatre_Explore` to initiate the user interface.
+
 ## Usage
 
-TODO: Write usage instructions here
+After running the interface by entering the command `Theatre_Explore`, simply follow the prompts and enter the appropriate information for your search.
 
 ## Development
 

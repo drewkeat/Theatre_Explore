@@ -13,6 +13,11 @@ class Production
         join_year(@year)
     end
 
+    def self.create_from_year(year,choice)
+        url = year.display_list[year.display_list.keys[choice-1]]
+        Scraper.new("show", url)
+    end
+
     def self.all
         @@all
     end
