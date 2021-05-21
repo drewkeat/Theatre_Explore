@@ -1,8 +1,6 @@
 # Theatre_Explore
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Theatre_Explore`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Theatre Explore provides a CLI for users to interact with production information from the website www.broadwayworld.com.  The user experience begins with selecting whether to search for productions by name or by year.  After that selection, specific aspects of a chosen production can be viewed in greater detail.
 
 ## Installation
 
