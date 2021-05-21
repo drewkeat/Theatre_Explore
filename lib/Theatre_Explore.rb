@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'pry'
-require 'nokogiri'
 require 'mechanize'
 
 require_relative "Theatre_Explore/version"
