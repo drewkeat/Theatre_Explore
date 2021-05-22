@@ -1,8 +1,6 @@
 # Theatre_Explore
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Theatre_Explore`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Theatre Explore provides a CLI for users to interact with production information from the website www.broadwayworld.com.  The user experience begins with selecting whether to search for productions by name or by year.  After that selection, specific aspects of a chosen production can be viewed in greater detail.
 
 ## Installation
 
@@ -11,18 +9,15 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'Theatre_Explore'
 ```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
+To use this gem, type the following command into your terminal:
 
     $ gem install Theatre_Explore
 
+Once the gem has been added to your system, use the command `Theatre_Explore` to initiate the user interface.
+
 ## Usage
 
-TODO: Write usage instructions here
+After running the interface by entering the command `Theatre_Explore`, simply follow the prompts and enter the appropriate information for your search.
 
 ## Development
 
@@ -32,7 +27,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/<github username>/Theatre_Explore. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/<github username>/Theatre_Explore/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/drewkeat/Theatre_Explore. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/drewkeat/Theatre_Explore/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -40,4 +35,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Theatre_Explore project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/<github username>/Theatre_Explore/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Theatre_Explore project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/drewkeat/Theatre_Explore/blob/master/CODE_OF_CONDUCT.md).

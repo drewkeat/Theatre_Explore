@@ -1,15 +1,21 @@
 class Production
-    attr_accessor :show, :label, :year, :type #:details, :cast, :crew
+    attr_accessor :show, :label, :year, :type, :details
     @@all = []
-    def initialize(show, label, year, type)
+    def initialize(show, label, year, type, details)
         @show = show
         @type = type
         @label = label
         @year = year
-        @year = Time.now.year if @year == nil
+        @year = Time.now.year.to_s if @year == nil
+        @details = details
         self.save
-        join_show(show)
-        join_year(year)
+        join_show(@show)
+        join_year(@year)
+    end
+
+    def self.create_from_year(year,choice)
+        url = year.display_list[year.display_list.keys[choice-1]]
+        Scraper.new("show", url)
     end
 
     def self.all
@@ -34,11 +40,11 @@ class Production
     end
 
     def join_year(year)
-        if Year.find(year)
-            Year.find(year).productions << self
+        if Year.find_or_create(year)
+            Year.find_or_create(year).productions << self
         else
             Scraper.new("year", year)
-            Year.find(year).productions << self
+            Year.find_or_create(year).productions << self
         end
     end
 
@@ -48,6 +54,12 @@ class Production
         puts "========================"
         puts "Show type: #{type}"
         puts ""
-        puts "Details will be placed here"
+        puts "
+        Summary:\n
+        #{details.values.first}\n
+        "
+        details.keys.each.with_index do |k, i|
+            puts "#{k.rjust(16)} ------ #{details[k]}" if i > 0
+        end
     end
 end

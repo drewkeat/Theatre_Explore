@@ -1,13 +1,12 @@
 class Theatre_Explore::CLI
-    def clear_term
-        system("clear")
-    end
-
     def call
-        clear_term
-        puts "Welcome to Theatre Explore!"
+        system("clear")
+        puts "
+        =====================================
+        ||   Welcome to Theatre Explore!   ||
+        =====================================
+        "
         puts "\nHow would you like to search?"
-
         display_options
     end
 
@@ -21,72 +20,126 @@ class Theatre_Explore::CLI
     end
 
     def main_prompt
-        puts
+        puts ""
         puts "Input the corresponding number for your selection." 
         input = ''
         until input == 'exit'
             input = gets.strip.downcase
             case input
             when "1"
-                clear_term
+                system("clear")
                 year_input
             when "2"
-                clear_term
+                system("clear")
                 show_input
             when 'exit'
                 goodbye
-                
             else
-                clear_term
-                puts "I'm not sure what you want."
-                display_options
+                unclear
             end
         end
     end
 
-    #This needs cleaning! Allow users to search further or exit after production#print
+    def unclear
+        system("clear")
+        puts "I'm not sure what you want."
+        sleep(1)
+        system("clear")
+        display_options
+    end
+
     def year_input
-        puts "Excellent!"
         puts "========================"
         puts "What year would you like to explore?"
+        puts "I can pull records dating back to 1832."
+        puts "========================"
+        puts ""
             input = gets.strip
-                if Year.find(input)
-                    year = Year.find(input)
+                if Year.valid?(input)
+                    year = Year.find_or_create(input)
                     year.print
                     puts "========================"
                     puts "Please enter the number of the production you wish to explore."
                     choice = gets.strip.to_i
-                    year.create_production(choice)
-                    clear_term
-                    year.print_production(choice)
-                elsif Year.valid?(input) && !Year.find(input)
-                    Scraper.new('year', input)
-                    year = Year.find(input)
-                    year.print
-                    puts "========================"
-                    puts "Please enter the number of the production you wish to explore."
-                    choice = gets.strip.to_i
-                    year.create_production(choice)
-                    clear_term
-                    year.print_production(choice)
+                    Production.create_from_year(year, choice)
+                    system("clear")
+                    year.select_production(choice).print
+                    repeat_prompt
                 else
-                    clear_term
+                    system("clear")
+                    puts "========================"
                     puts "\n I'm sorry, that year is invalid."
-                    puts "Would you like to try again?\n"
+                    puts "========================"
+                    sleep(1)
+                    system("clear")
                     display_options
                 end
     end
-    #This needs functionality!
+    #This likely needs to be refactored
     def show_input
-        puts "Right On!"
-                puts "What show would you like to explore?"
+        puts "===================================="
+        puts "What show would you like to explore?"
+        puts "===================================="
+        puts ""
+            input = gets.strip
+            list = show_search(input)
+        system("clear")
+        if list.keys.size < 1
+            puts "I'm sorry, there doesn't seem to be a show with that title."
+            sleep(1)
+            repeat_prompt
+        else    
+            list.keys.each.with_index(1) {|k,i| puts "#{i}) #{k}"}
+        end
+        puts "What production would you like to learn more about?"
+        puts ""
+            input = gets.strip.to_i
+            if input.between?(1,list.keys.size)
+                Scraper.new('show', list[list.keys[input-1]])
+            else
+                system("clear")
+                puts "I'm not sure what you want."
+                sleep(1)
+                system("clear")
+                repeat_prompt
+            end
+        system("clear")
+        Production.all.last.print
+        repeat_prompt
+    end
+
+    def show_search(input)
+        result = Scraper.new("search", input)
+            list = {}
+            results = result.page.search("td span")
+                results.each do |production|
+                    list[production.text] = "https://www.broadwayworld.com#{production.children.at("a").attribute("href").value}"
+                end
+        list
+    end
+
+    def repeat_prompt
+        puts ""
+        puts "Would you like to explore more? (Yes or No)"
+        input = gets.strip.downcase
+        case input
+        when "yes", "y"
+            system("clear")
+            display_options
+        when "no", "n"
+            goodbye
+        else
+            unclear
+        end
     end
 
     def goodbye
         system("clear")
-        puts "Thanks for exploring!"
-        binding.pry
-        puts "Goodbye!"
+        puts "==========================="
+        puts "|| Thanks for exploring! ||"
+        puts "---------------------------"
+        puts "||        Goodbye!       ||"
+        puts "==========================="
         exit
     end
 
